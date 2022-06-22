@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html>
+
 <head>
   <script src="face-api.js"></script>
   <script src="js/commons.js"></script>
@@ -8,18 +9,116 @@
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
   <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script>
-</head>
-<body>
-  <div id="navbar"></div>
-  <div class="center-content page-container">
+  <script type="text/javascript" src="https://livejs.com/live.js"></script>
+  <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js.map"></script>
 
-    <div class="progress" id="loader">
-      <div class="indeterminate"></div>
+
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
+  <style>
+    .btn2 {
+      font-size: 20px;
+      padding: 0;
+      border: none;
+      background: gray;
+      content: '\f27e';
+    }
+
+    .btn1 {
+      font-size: 20px;
+      padding: 0;
+      border: none;
+      background: gray;
+      text-align: center;
+      content: '\f27e';
+    }
+
+    .btn3 {
+      font-size: 20px;
+      padding: 0;
+      border: none;
+      background: red;
+      content: '\f27e';
+    }
+
+    .margin-right {
+      margin-right: 50px;
+    }
+
+    .margin-right1 {
+      margin-right: 300px;
+    }
+  </style>
+
+</head>
+
+<body>
+  <div class="main">
+    <div class="main__left">
+      <div id="navbar"></div>
+      <div class="center-content page-container">
+
+        <div class="progress" id="loader">
+          <div class="indeterminate"></div>
+        </div>
+
+        <div style="position: relative" class="margin">
+          <video onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted playsinline></video>
+          <canvas id="overlay">
+        </div>
+      </div>
+        <div class="main__controls">
+          <div class="main__controls_block">
+            <div class="main__controls_button" id="muteButton" onclick="muteUnmute()">
+              <i class="fa fa-microphone"></i>
+              <span>Mute</span>
+            </div>
+            <div class="main__controls_button" id="playPauseVideo" onclick="playStop()">
+              <i class="fa fa-video-camera"></i>
+              <span>Stop Video</span>
+            </div>
+          </div>
+
+          <div class="main__controls_block">
+            <div class="main__controls_button">
+              <i class="fa fa-shield"></i>
+              <span>Security</span>
+            </div>
+            <div class="main__controls_button">
+              <i class="fa fa-users"></i>
+              <span>Participants</span>
+            </div>
+            <div class="main__controls_button">
+              <i class="fa fa-comment"></i>
+              <span>Chat</span>
+            </div>
+          </div>
+          <!-- <button>Link To freeCodeCamp</button></a> -->
+          <!-- <button onclick="https://google.com">HTML Tutorial</button> -->
+
+          <div class="main__controls_block" onClick="showMessage()">
+            <div class="main__controls_button leaveMeeting" id="leave-meeting">
+              <i class="fa fa-times"></i>
+              <a href='https://google.com'>
+                <span class="">Leave</span>   
+              </a>         
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="main__right">
+        <div class="main__header">
+          <h6>Chat</h6>
+        </div>
+        <div class="main__chat__window" id="main__chat__window">
+          <ul class="messages" id="all_messages"></ul>
+        </div>
+        <div class="main__message_container">
+          <input type="text" id="chat_message" placeholder="Type message here.." />
+        </div>
+      </div>
     </div>
-    <div style="position: relative" class="margin">
-      <video onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted playsinline></video>
-      <canvas id="overlay" />
-    </div>
+
 
     <div class="row side-by-side">
 
@@ -61,16 +160,10 @@
           <label for="minConfidence">Min Confidence:</label>
           <input disabled value="0.5" id="minConfidence" type="text" class="bold">
         </div>
-        <button
-          class="waves-effect waves-light btn"
-          onclick="onDecreaseMinConfidence()"
-        >
+        <button class="waves-effect waves-light btn" onclick="onDecreaseMinConfidence()">
           <i class="material-icons left">-</i>
         </button>
-        <button
-          class="waves-effect waves-light btn"
-          onclick="onIncreaseMinConfidence()"
-        >
+        <button class="waves-effect waves-light btn" onclick="onIncreaseMinConfidence()">
           <i class="material-icons left">+</i>
         </button>
       </div>
@@ -97,90 +190,215 @@
           <label for="scoreThreshold">Score Threshold:</label>
           <input disabled value="0.5" id="scoreThreshold" type="text" class="bold">
         </div>
-        <button
-          class="waves-effect waves-light btn"
-          onclick="onDecreaseScoreThreshold()"
-        >
+        <button class="waves-effect waves-light btn" onclick="onDecreaseScoreThreshold()">
           <i class="material-icons left">-</i>
         </button>
-        <button
-          class="waves-effect waves-light btn"
-          onclick="onIncreaseScoreThreshold()"
-        >
+        <button class="waves-effect waves-light btn" onclick="onIncreaseScoreThreshold()">
           <i class="material-icons left">+</i>
         </button>
       </div>
     </span>
     <!-- tiny_face_detector_controls -->
 
-  </body>
-
-  <script>
-    let forwardTimes = []
-    let withBoxes = true
-
-    function onChangeHideBoundingBoxes(e) {
-      withBoxes = !$(e.target).prop('checked')
-    }
-
-    function updateTimeStats(timeInMs) {
-      forwardTimes = [timeInMs].concat(forwardTimes).slice(0, 30)
-      const avgTimeInMs = forwardTimes.reduce((total, t) => total + t) / forwardTimes.length
-      $('#time').val(`${Math.round(avgTimeInMs)} ms`)
-      $('#fps').val(`${faceapi.utils.round(1000 / avgTimeInMs)}`)
-    }
-
-    async function onPlay() {
-      const videoEl = $('#inputVideo').get(0)
-
-      if(videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded())
-        return setTimeout(() => onPlay())
-
-
-      const options = getFaceDetectorOptions()
-
-      const ts = Date.now()
-
-      const result = await faceapi.detectSingleFace(videoEl, options).withFaceExpressions()
-
-      updateTimeStats(Date.now() - ts)
-
-      if (result) {
-        const canvas = $('#overlay').get(0)
-        const dims = faceapi.matchDimensions(canvas, videoEl, true)
-
-        const resizedResult = faceapi.resizeResults(result, dims)
-        console.log(resizedResult.expressions);
-        const minConfidence = 0.05
-        if (withBoxes) {
-          faceapi.draw.drawDetections(canvas, resizedResult)
-        }
-        faceapi.draw.drawFaceExpressions(canvas, resizedResult, minConfidence)
-      }
-
-      setTimeout(() => onPlay())
-    }
-
-    async function run() {
-      // load face detection and face expression recognition models
-      await changeFaceDetector(TINY_FACE_DETECTOR)
-      await faceapi.loadFaceExpressionModel('/')
-      changeInputSize(224)
-
-      // try to access users webcam and stream the images
-      // to the video element
-      const stream = await navigator.mediaDevices.getUserMedia({ video: {} })
-      const videoEl = $('#inputVideo').get(0)
-      videoEl.srcObject = stream
-    }
-
-    function updateResults() {}
-
-    $(document).ready(function() {
-      renderNavBar('#navbar', 'face-recognition-testing')
-      initFaceDetectionControls()
-      run()
-    })
-  </script>
 </body>
+
+<script>
+  let forwardTimes = []
+  let withBoxes = true
+
+  function onChangeHideBoundingBoxes(e) {
+    withBoxes = !$(e.target).prop('checked')
+  }
+
+  function updateTimeStats(timeInMs) {
+    forwardTimes = [timeInMs].concat(forwardTimes).slice(0, 30)
+    const avgTimeInMs = forwardTimes.reduce((total, t) => total + t) / forwardTimes.length
+    $('#time').val(`${Math.round(avgTimeInMs)} ms`)
+    $('#fps').val(`${faceapi.utils.round(1000 / avgTimeInMs)}`)
+  }
+
+  async function onPlay() {
+    const videoEl = $('#inputVideo').get(0);
+
+    if (videoEl.paused || videoEl.ended || !isFaceDetectionModelLoaded()) {
+
+      return setTimeout(() => onPlay())
+    }
+
+    const options = getFaceDetectorOptions()
+
+    const ts = Date.now()
+
+    const result = await faceapi.detectSingleFace(videoEl, options).withFaceExpressions()
+
+    updateTimeStats(Date.now() - ts)
+
+    if (result) {
+      const canvas = $('#overlay').get(0)
+      const dims = faceapi.matchDimensions(canvas, videoEl, true)
+
+      const resizedResult = faceapi.resizeResults(result, dims)
+      // console.log(resizedResult.expressions);
+      const minConfidence = 0.05
+      if (withBoxes) {
+        faceapi.draw.drawDetections(canvas, resizedResult)
+      }
+      faceapi.draw.drawFaceExpressions(canvas, resizedResult, minConfidence)
+    }
+
+    setTimeout(() => onPlay())
+  }
+
+  let myVideoStream;
+
+  const muteUnmute = () => {
+    const enabled = myVideoStream.getAudioTracks()[0].enabled;
+    if (enabled) {
+      myVideoStream.getAudioTracks()[0].enabled = false;
+      setUnmuteButton();
+    } else {
+      setMuteButton();
+      myVideoStream.getAudioTracks()[0].enabled = true;
+    }
+  };
+
+  const setUnmuteButton = () => {
+    const html = `<i id="mute" class="unmute fa fa-microphone-slash"></i>
+    <span class="unmute">Unmute</span>`;
+    document.getElementById("muteButton").innerHTML = html;
+  };
+
+  const setMuteButton = () => {
+    const html = `<i class="fa fa-microphone"></i>
+    <span>Mute</span>`;
+    document.getElementById("muteButton").innerHTML = html;
+  };
+
+  const setPlayVideo = () => {
+    const html = `<i class="unmute fa fa-pause-circle"></i>
+    <span class="unmute">Start Video</span>`;
+    document.getElementById("playPauseVideo").innerHTML = html;
+  };
+
+  const setStopVideo = () => {
+    const html = `<i class=" fa fa-video-camera"></i>
+    <span class="">Stop Video</span>`;
+    document.getElementById("playPauseVideo").innerHTML = html;
+  };
+
+  async function run() {
+    // load face detection and face expression recognition models
+    await changeFaceDetector(TINY_FACE_DETECTOR)
+    await faceapi.loadFaceExpressionModel('/')
+    changeInputSize(224)
+
+    // try to access users webcam and stream the images
+    // to the video element
+    const stream = await navigator.mediaDevices.getUserMedia({ video: {} })
+    const videoEl = $('#inputVideo').get(0)
+    videoEl.srcObject = stream
+  }
+
+  function updateResults() { }
+
+  $(document).ready(function () {
+    renderNavBar('#navbar', 'face-recognition-testing')
+    initFaceDetectionControls();
+
+    run()
+  })
+</script>
+
+<script>
+  const myVideo = document.createElement("video");
+  myVideo.muted = true;
+
+  var peer = new Peer(undefined, {
+    path: "/peerjs",
+    host: "/",
+    port: "3000",
+  });
+
+
+  var getUserMedia =
+    navigator.getUserMedia ||
+    navigator.webkitGetUserMedia ||
+    navigator.mozGetUserMedia;
+
+  navigator.mediaDevices.getUserMedia({
+    video: true,
+    audio: true,
+  })
+    .then((stream) => {
+      myVideoStream = stream;
+      addVideoStream(myVideo, stream);
+
+      peer.on("call", (call) => {
+        call.answer(stream);
+        const video = document.createElement("video");
+
+        call.on("stream", (userVideoStream) => {
+          addVideoStream(video, userVideoStream);
+        });
+      });
+
+      // socket.on("user-connected", (userId) => {
+      //   connectToNewUser(userId, stream);
+      // });
+
+      // document.addEventListener("keydown", (e) => {
+      //   if (e.which === 13 && chatInputBox.value != "") {
+      //     socket.emit("message", chatInputBox.value);
+      //     chatInputBox.value = "";
+      //   }
+      // });
+
+      // socket.on("createMessage", (msg) => {
+      //   console.log(msg);
+      //   let li = document.createElement("li");
+      //   li.innerHTML = msg;
+      //   all_messages.append(li);
+      //   main__chat__window.scrollTop = main__chat__window.scrollHeight;
+      // });
+    });
+
+  const addVideoStream = (videoEl, stream) => {
+    videoEl.srcObject = stream;
+    videoEl.addEventListener("loadedmetadata", () => {
+      videoEl.play();
+    });
+
+    // videoGrid.append(videoEl);
+    // let totalUsers = document.getElementsByTagName("video").length;
+    // if (totalUsers > 1) {
+    //   for (let index = 0; index < totalUsers; index++) {m
+    //     document.getElementsByTagName("video")[index].style.width =
+    //       100 / totalUsers + "%";
+    //   }
+    // }
+  };
+
+  const playStop = () => {
+  let enabled = myVideoStream.getVideoTracks()[0].enabled;
+  if (enabled) {
+    myVideoStream.getVideoTracks()[0].enabled = false;
+     setPlayVideo();
+     console.log(myVideoStream);
+     myVideoStream.pause();
+     myVideoStream.src = "";
+    localstream.stop();
+  } else {
+    myVideoStream.getVideoTracks()[0].enabled = true;
+     setStopVideo();
+  }
+};
+</script>
+
+<script type="text/javascript">
+  function showMessage() {
+      alert("Click OK to leave the meeting");
+  }
+</script>
+</body>
+
 </html>
