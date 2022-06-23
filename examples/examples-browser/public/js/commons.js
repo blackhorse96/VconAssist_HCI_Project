@@ -61,8 +61,8 @@ function renderNavBar(navbarId, exampleUri) {
       name: 'Webcam Face Landmark Detection'
     },
     {
-      uri: 'face-recognition-testing',
-      name: 'Testing Face Recognition'
+      uri: 'face-recognition-testing', 
+       name: 'VCon Assist'
     },
     {
       uri: 'webcam_age_and_gender_recognition',
