@@ -170,7 +170,7 @@ body {
 
 .center-content {
   display: flex;
-  flex-direction: column;
+  /* flex-direction: column; */
   justify-content: center;
   align-items: center;
   flex-wrap: wrap;
@@ -283,7 +283,6 @@ h3 {
   margin: 5px;
 }
 .main__controls_button span {
-  margin-top: 10px;
   display: block;
 }
 .main__controls_button:hover {
@@ -342,10 +341,10 @@ h3 {
   width: 200px;
   padding: 5px;
   height: 100px; /* Should be removed. Only for demonstration */
-  padding-left: 50px;
   border-color: #fff;
+  border-radius: 4px;
   column-gap: 40px;
-  margin:0 5px;
+  margin:0 20px;
   margin-top: 25px;
 }
 
