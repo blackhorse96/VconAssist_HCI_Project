@@ -218,38 +218,90 @@
   
           if (!currentlyAnimating) {
             currentlyAnimating = true;
-            playOnClick();
+            playOnClick(2);
           }
       //   }
       // }
     }
   
     // Get a random animation, and play it 
-    function playOnClick() {
+    function playOnClick(n) {
       let anim = Math.floor(Math.random() * possibleAnims.length) + 0;
       console.log(anim);
-      playModifierAnimation(idle, 0.25, possibleAnims[2], 0.25);
+      playModifierAnimation(idle, 0.25, possibleAnims[n], 0.25);
     }
 
-    function animForStart(){
-      first = document.getElementById('first-ex');
-          first.style.display = 'block';
-      playModifierAnimation(idle, 0.25, possibleAnims[4], 0.25);
+    function animForStart1(){
+      first.style.display = 'block';
+      chrtr.style.display = 'block';
+        playModifierAnimation(idle, 0.25, possibleAnims[5], 2);
+        console.log('one');
+        setTimeout(() => {
+          first.style.display = 'none';
+      chrtr.style.display = 'none';
+          animForSad();
+        }, 5000);
+    }
+
+    function angry(){
+      angry1.style.display = 'block';
+      chrtr.style.display = 'block';
+        playModifierAnimation(idle, 0.25, possibleAnims[7], 2);
+        console.log('one');
+        setTimeout(() => {
+          angry1.style.display = 'none';
+      chrtr.style.display = 'none';
+          bye();
+        }, 5000);
+    }
+    function disgusting(){
+      disgust.style.display = 'block';
+      chrtr.style.display = 'block';
+        playModifierAnimation(idle, 0.25, possibleAnims[1], 2);
+        console.log('one');
+        setTimeout(() => {
+          disgust.style.display = 'none';
+      chrtr.style.display = 'none';
+          bye();
+        }, 5000);
     }
 
     function animForSad(){
-      first.style.display = 'none';
-      playModifierAnimation(idle, 0.25, possibleAnims[2], 0.25);
-      sec = document.getElementById('play-with-me');
-          sec.style.display = 'block';
+      console.log('two');
+      chrtr.style.display = 'block';
+      sec.style.display = 'block';
+        playModifierAnimation(idle, 0.25, possibleAnims[2], 2);
+      console.log('sad');
+      setTimeout(() => {
+        chrtr.style.display = 'none';
+      sec.style.display = 'none';
+        bye();
+      }, 5000);
+    }
+
+    function bye(){
+      chrtr.style.display = 'block';
+      bye1.style.display = 'block';
+      playModifierAnimation(idle, 0.25, possibleAnims[6], 2);
+      console.log('bye');
+      setTimeout(() => {
+        chrtr.style.display = 'none';
+      bye1.style.display = 'none';
+        removeAllAnimations();
+        console.log('Finished');
+      }, 5000);
     }
   
   
     function playModifierAnimation(from, fSpeed, to, tSpeed) {
-      to.setLoop(THREE.LoopRepeat);
+      to.setLoop(THREE.LoopRepeat, tSpeed);
+      // to.repetitions = 5;
       to.reset();
       to.play();
       from.crossFadeTo(to, fSpeed, true);
+      // setTimeout(() => {
+      //   return;
+      // }, 5000);
       // setTimeout(function () {
       //   from.enabled = true;
       //   to.crossFadeTo(from, tSpeed, true);
