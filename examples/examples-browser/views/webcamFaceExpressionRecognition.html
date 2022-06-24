@@ -35,7 +35,20 @@
         </div>
       </div>
 
+      <div id="first-ex" style="display: none;">
+        <p class="text_shadows">hello</p>
+        <p class="text_shadows">dear,</p>
+        <p class="text_shadows">You Look</p>
+        <p class="text_shadows">getting</p>
+        <p class="text_shadows">sad?</p>
+      </div>
+      <div id="play-with-me" style="display: none;">
+        <p class="text_shadows">Come,</p>
+        <p class="text_shadows">Play with</p>
+        <p class="text_shadows">me</p>
+      </div>
       <div id="navbar"></div>
+      
       <div class="center-content page-container">
 
         <div class="progress" id="loader">
@@ -43,8 +56,8 @@
         </div>
 
         <div style="position: relative" class="margin">
-          <video onloadedmetadata="onPlay(this)" id="inputVideo" autoplay muted playsinline></video>
-          <canvas id="overlay">
+          <video onloadedmetadata="onPlay(this)" id="inputVideo" style="width: 103%;" autoplay muted playsinline></video>
+          <canvas id="overlay" >
         </div>
       </div>
       <div class="main__controls">
@@ -103,11 +116,14 @@
         </div>
       </div>
       <!-- <div class="main__chat__window" id="main__chat__window">
+        <div class="main__chat__window" id="main__chat__window">
           <ul class="messages" id="all_messages"></ul>
         </div>
         <div class="main__message_container">
           <input type="text" id="chat_message" placeholder="Type message here.." />
         </div> -->
+        </div>
+      </div>
     </div>
   </div>
 
@@ -206,6 +222,7 @@
 <script>
   let forwardTimes = []
   let withBoxes = true
+  var chrtr = document.getElementById('c');
 
   function onChangeHideBoundingBoxes(e) {
     withBoxes = !$(e.target).prop('checked')
@@ -222,6 +239,7 @@
   expression1.sad = 0.0;
   expression1.happy = 0.0;
   expression1.angry = 0.0;
+  runTime = 0;
 
   async function onPlay() {
     const videoEl = $('#inputVideo').get(0);
@@ -251,6 +269,39 @@
       var max = findMax(expression1);
       if (max === 'happy') {
         console.log('Sanjeewa');
+      // console.log(resizedResult.expressions);
+      expression1.sad += resizedResult.expressions.sad;
+      expression1.happy += resizedResult.expressions.happy;
+      expression1.angry += resizedResult.expressions.angry;
+      runTime = runTime + 1;
+      // console.log(expression1.happy);
+      var max =  findMax(expression1);
+      
+      console.log(runTime);
+      if(runTime == 10)
+      {
+        
+        expression1.sad = 0.0;
+        expression1.happy = 0.0;
+        expression1.angry = 0.0;
+        runTime = 0;
+
+        if(max === 'happy'){
+          console.log('Sanjeewa');
+          chrtr.style.display = 'none';
+      first.style.display = 'none';
+      sec.style.display = 'none';
+          
+        }
+        else if(max === 'sad'){
+          animForStart();
+          
+          chrtr.style.display = 'block';
+          setTimeout(animForSad, 10000);
+          console.log('Pradeep');
+        }
+        console.log('done');
+        
       }
       const minConfidence = 0.05
       if (withBoxes) {
@@ -259,7 +310,8 @@
       faceapi.draw.drawFaceExpressions(canvas, resizedResult, minConfidence)
     }
 
-    setTimeout(() => onPlay())
+    // setTimeout(() => onPlay());
+    setTimeout(onPlay, 500);
   }
 
   function findMax(expressions) {
@@ -429,6 +481,7 @@
     alert("Click OK to leave the meeting");
   }
 </script>
+
 </body>
 
 </html>

@@ -1,4 +1,4 @@
-(function () {
+// (function () {
     // Set our main variables
     let scene,
     renderer,
@@ -227,20 +227,34 @@
     // Get a random animation, and play it 
     function playOnClick() {
       let anim = Math.floor(Math.random() * possibleAnims.length) + 0;
-      playModifierAnimation(idle, 0.25, possibleAnims[anim], 0.25);
+      console.log(anim);
+      playModifierAnimation(idle, 0.25, possibleAnims[2], 0.25);
+    }
+
+    function animForStart(){
+      first = document.getElementById('first-ex');
+          first.style.display = 'block';
+      playModifierAnimation(idle, 0.25, possibleAnims[4], 0.25);
+    }
+
+    function animForSad(){
+      first.style.display = 'none';
+      playModifierAnimation(idle, 0.25, possibleAnims[2], 0.25);
+      sec = document.getElementById('play-with-me');
+          sec.style.display = 'block';
     }
   
   
     function playModifierAnimation(from, fSpeed, to, tSpeed) {
-      to.setLoop(THREE.LoopOnce);
+      to.setLoop(THREE.LoopRepeat);
       to.reset();
       to.play();
       from.crossFadeTo(to, fSpeed, true);
-      setTimeout(function () {
-        from.enabled = true;
-        to.crossFadeTo(from, tSpeed, true);
-        currentlyAnimating = false;
-      }, to._clip.duration * 1000 - (tSpeed + fSpeed) * 1000);
+      // setTimeout(function () {
+      //   from.enabled = true;
+      //   to.crossFadeTo(from, tSpeed, true);
+      //   currentlyAnimating = false;
+      // }, to._clip.duration * 1000 - (tSpeed + fSpeed) * 1000);
     }
   
     document.addEventListener('mousemove', function (e) {
@@ -306,4 +320,4 @@
       return { x: dx, y: dy };
     }
   
-  })();
+  // })();
