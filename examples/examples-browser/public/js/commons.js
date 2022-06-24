@@ -62,7 +62,6 @@ function renderNavBar(navbarId, exampleUri) {
     },
     {
       uri: 'face-recognition-testing', 
-       name: 'VCon Assist'
     },
     {
       uri: 'webcam_age_and_gender_recognition',
