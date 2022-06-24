@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 
-<head>  
+<head>
   <link rel="stylesheet" href="styles.css">
   <link rel="stylesheet" href="humanCharacter.css">
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/css/materialize.css">
@@ -10,51 +10,31 @@
   <script type="text/javascript" src="https://livejs.com/live.js"></script>
   <script src="https://unpkg.com/peerjs@1.3.1/dist/peerjs.min.js"></script>
   <script src="https://cdnjs.cloudflare.com/ajax/libs/peerjs/1.3.1/peerjs.min.js.map"></script>
-  <script>document.documentElement.className="js";var supportsCssVars=function(){var e,t=document.createElement("style");return t.innerHTML="root: { --tmp-var: bold; }",document.head.appendChild(t),e=!!(window.CSS&&window.CSS.supports&&window.CSS.supports("font-weight","var(--tmp-var)")),t.parentNode.removeChild(t),e};supportsCssVars()||alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
+  <script>document.documentElement.className = "js"; var supportsCssVars = function () { var e, t = document.createElement("style"); return t.innerHTML = "root: { --tmp-var: bold; }", document.head.appendChild(t), e = !!(window.CSS && window.CSS.supports && window.CSS.supports("font-weight", "var(--tmp-var)")), t.parentNode.removeChild(t), e }; supportsCssVars() || alert("Please view this demo in a modern browser that supports CSS Variables.");</script>
 
 
 
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
-  <style>
-    .btn2 {
-      font-size: 20px;
-      padding: 0;
-      border: none;
-      background: gray;
-      content: '\f27e';
-    }
-
-    .btn1 {
-      font-size: 20px;
-      padding: 0;
-      border: none;
-      background: gray;
-      text-align: center;
-      content: '\f27e';
-    }
-
-    .btn3 {
-      font-size: 20px;
-      padding: 0;
-      border: none;
-      background: red;
-      content: '\f27e';
-    }
-
-    .margin-right {
-      margin-right: 50px;
-    }
-
-    .margin-right1 {
-      margin-right: 300px;
-    }
-  </style>
 
 </head>
 
 <body>
   <div class="main">
-    <div class="main__left">
+    <div class="main__left">     
+
+      <div class="row">
+        <div class="column" style="background-color:rgb(0, 0, 0);">
+          <p style="color:rgb(255, 255, 255)">Column 1 </p>
+          <i class='far fa-user' style='font-size:48px;color:red'></i>
+        </div>
+        <div class="column" style="background-color:rgb(0, 0, 0);">
+          <p style="color:rgb(246, 246, 246)">Column 2</p>
+        </div>
+        <div class="column" style="background-color:rgb(0, 0, 0);">
+          <p style="color:rgb(246, 246, 246)">Column 3</p>
+        </div>
+      </div>
+
       <div id="first-ex" style="display: none;">
         <p class="text_shadows">hello</p>
         <p class="text_shadows">dear,</p>
@@ -80,150 +60,153 @@
           <canvas id="overlay" >
         </div>
       </div>
-        <div class="main__controls">
-          <div class="main__controls_block">
-            <div class="main__controls_button" id="muteButton" onclick="muteUnmute()">
-              <i class="fa fa-microphone"></i>
-              <span>Mute</span>
-            </div>
-            <div class="main__controls_button" id="playPauseVideo" onclick="playStop()">
-              <i class="fa fa-video-camera"></i>
-              <span>Stop Video</span>
-            </div>
+      <div class="main__controls">
+        <div class="main__controls_block">
+          <div class="main__controls_button" id="muteButton" onclick="muteUnmute()">
+            <i class="fa fa-microphone"></i>
+            <span>Mute</span>
           </div>
-
-          <div class="main__controls_block">
-            <div class="main__controls_button">
-              <i class="fa fa-shield"></i>
-              <span>Security</span>
-            </div>
-            <div class="main__controls_button">
-              <i class="fa fa-users"></i>
-              <span>Participants</span>
-            </div>
-            <div class="main__controls_button">
-              <i class="fa fa-comment"></i>
-              <span>Chat</span>
-            </div>
+          <div class="main__controls_button" id="playPauseVideo" onclick="playStop()">
+            <i class="fa fa-video-camera"></i>
+            <span>Stop Video</span>
           </div>
-          <!-- <button>Link To freeCodeCamp</button></a> -->
-          <!-- <button onclick="https://google.com">HTML Tutorial</button> -->
+        </div>
 
-          <div class="main__controls_block" onClick="showMessage()">
-            <div class="main__controls_button leaveMeeting" id="leave-meeting">
-              <i class="fa fa-times"></i>
-              <a href='https://google.com'>
-                <span class="">Leave</span>   
-              </a>         
-            </div>
+        <div class="main__controls_block">
+          <div class="main__controls_button">
+            <i class="fa fa-shield"></i>
+            <span>Security</span>
+          </div>
+          <div class="main__controls_button">
+            <i class="fa fa-users"></i>
+            <span>Participants</span>
+          </div>
+          <div class="main__controls_button">
+            <i class="fa fa-comment"></i>
+            <span>Chat</span>
+          </div>
+        </div>
+        <!-- <button>Link To freeCodeCamp</button></a> -->
+        <!-- <button onclick="https://google.com">HTML Tutorial</button> -->
+
+        <div class="main__controls_block" onClick="showMessage()">
+          <div class="main__controls_button leaveMeeting" id="leave-meeting">
+            <i class="fa fa-times"></i>
+            <a href='https://google.com'>
+              <span class="">Leave</span>
+            </a>
           </div>
         </div>
       </div>
-      <div class="main__right">
-        <div class="main__header">
-          <h6>Chat</h6>
+    </div>
+    <div class="main__right">
+      <div class="main__header">
+        <h6>Chat</h6>
+      </div>
+      <div>
+        <div class="loading" id="js-loader">
+          <div class="loader"></div>
         </div>
-        <div>
-          <div class="loading" id="js-loader">
-            <div class="loader"></div>
-          </div>
-          <div class="wrapper">
-              <!-- The canvas element is used to draw the 3D scene -->
-            <canvas id="c"></canvas>
-          </div>
-          <div class="frame">
-            <h1 class="frame__title"></h1>
-          </div>
+        <div class="wrapper">
+          <!-- The canvas element is used to draw the 3D scene -->
+          <canvas id="c"></canvas>
         </div>
+        <div class="frame">
+          <h1 class="frame__title"></h1>
+        </div>
+      </div>
+      <!-- <div class="main__chat__window" id="main__chat__window">
         <div class="main__chat__window" id="main__chat__window">
           <ul class="messages" id="all_messages"></ul>
         </div>
         <div class="main__message_container">
           <input type="text" id="chat_message" placeholder="Type message here.." />
+        </div> -->
         </div>
       </div>
     </div>
+  </div>
 
 
+  <div class="row side-by-side">
+
+    <!-- face_detector_selection_control -->
+    <div id="face_detector_selection_control" class="row input-field" style="margin-right: 20px;">
+      <select id="selectFaceDetector">
+        <option value="ssd_mobilenetv1">SSD Mobilenet V1</option>
+        <option value="tiny_face_detector">Tiny Face Detector</option>
+      </select>
+      <label>Select Face Detector</label>
+    </div>
+    <!-- face_detector_selection_control -->
+
+    <!-- check boxes -->
+    <div class="row" style="width: 220px;">
+      <input type="checkbox" id="hideBoundingBoxesCheckbox" onchange="onChangeHideBoundingBoxes(event)" />
+      <label for="hideBoundingBoxesCheckbox">Hide Bounding Boxes</label>
+    </div>
+    <!-- check boxes -->
+
+    <!-- fps_meter -->
+    <div id="fps_meter" class="row side-by-side">
+      <div>
+        <label for="time">Time:</label>
+        <input disabled value="-" id="time" type="text" class="bold">
+        <label for="fps">Estimated Fps:</label>
+        <input disabled value="-" id="fps" type="text" class="bold">
+      </div>
+    </div>
+    <!-- fps_meter -->
+
+  </div>
+
+
+  <!-- ssd_mobilenetv1_controls -->
+  <span id="ssd_mobilenetv1_controls">
     <div class="row side-by-side">
-
-      <!-- face_detector_selection_control -->
-      <div id="face_detector_selection_control" class="row input-field" style="margin-right: 20px;">
-        <select id="selectFaceDetector">
-          <option value="ssd_mobilenetv1">SSD Mobilenet V1</option>
-          <option value="tiny_face_detector">Tiny Face Detector</option>
-        </select>
-        <label>Select Face Detector</label>
+      <div class="row">
+        <label for="minConfidence">Min Confidence:</label>
+        <input disabled value="0.5" id="minConfidence" type="text" class="bold">
       </div>
-      <!-- face_detector_selection_control -->
-
-      <!-- check boxes -->
-      <div class="row" style="width: 220px;">
-        <input type="checkbox" id="hideBoundingBoxesCheckbox" onchange="onChangeHideBoundingBoxes(event)" />
-        <label for="hideBoundingBoxesCheckbox">Hide Bounding Boxes</label>
-      </div>
-      <!-- check boxes -->
-
-      <!-- fps_meter -->
-      <div id="fps_meter" class="row side-by-side">
-        <div>
-          <label for="time">Time:</label>
-          <input disabled value="-" id="time" type="text" class="bold">
-          <label for="fps">Estimated Fps:</label>
-          <input disabled value="-" id="fps" type="text" class="bold">
-        </div>
-      </div>
-      <!-- fps_meter -->
-
+      <button class="waves-effect waves-light btn" onclick="onDecreaseMinConfidence()">
+        <i class="material-icons left">-</i>
+      </button>
+      <button class="waves-effect waves-light btn" onclick="onIncreaseMinConfidence()">
+        <i class="material-icons left">+</i>
+      </button>
     </div>
+  </span>
+  <!-- ssd_mobilenetv1_controls -->
 
-
-    <!-- ssd_mobilenetv1_controls -->
-    <span id="ssd_mobilenetv1_controls">
-      <div class="row side-by-side">
-        <div class="row">
-          <label for="minConfidence">Min Confidence:</label>
-          <input disabled value="0.5" id="minConfidence" type="text" class="bold">
-        </div>
-        <button class="waves-effect waves-light btn" onclick="onDecreaseMinConfidence()">
-          <i class="material-icons left">-</i>
-        </button>
-        <button class="waves-effect waves-light btn" onclick="onIncreaseMinConfidence()">
-          <i class="material-icons left">+</i>
-        </button>
+  <!-- tiny_face_detector_controls -->
+  <span id="tiny_face_detector_controls">
+    <div class="row side-by-side">
+      <div class="row input-field" style="margin-right: 20px;">
+        <select id="inputSize">
+          <option value="" disabled selected>Input Size:</option>
+          <option value="128">128 x 128</option>
+          <option value="160">160 x 160</option>
+          <option value="224">224 x 224</option>
+          <option value="320">320 x 320</option>
+          <option value="416">416 x 416</option>
+          <option value="512">512 x 512</option>
+          <option value="608">608 x 608</option>
+        </select>
+        <label>Input Size</label>
       </div>
-    </span>
-    <!-- ssd_mobilenetv1_controls -->
-
-    <!-- tiny_face_detector_controls -->
-    <span id="tiny_face_detector_controls">
-      <div class="row side-by-side">
-        <div class="row input-field" style="margin-right: 20px;">
-          <select id="inputSize">
-            <option value="" disabled selected>Input Size:</option>
-            <option value="128">128 x 128</option>
-            <option value="160">160 x 160</option>
-            <option value="224">224 x 224</option>
-            <option value="320">320 x 320</option>
-            <option value="416">416 x 416</option>
-            <option value="512">512 x 512</option>
-            <option value="608">608 x 608</option>
-          </select>
-          <label>Input Size</label>
-        </div>
-        <div class="row">
-          <label for="scoreThreshold">Score Threshold:</label>
-          <input disabled value="0.5" id="scoreThreshold" type="text" class="bold">
-        </div>
-        <button class="waves-effect waves-light btn" onclick="onDecreaseScoreThreshold()">
-          <i class="material-icons left">-</i>
-        </button>
-        <button class="waves-effect waves-light btn" onclick="onIncreaseScoreThreshold()">
-          <i class="material-icons left">+</i>
-        </button>
+      <div class="row">
+        <label for="scoreThreshold">Score Threshold:</label>
+        <input disabled value="0.5" id="scoreThreshold" type="text" class="bold">
       </div>
-    </span>
-    <!-- tiny_face_detector_controls -->
+      <button class="waves-effect waves-light btn" onclick="onDecreaseScoreThreshold()">
+        <i class="material-icons left">-</i>
+      </button>
+      <button class="waves-effect waves-light btn" onclick="onIncreaseScoreThreshold()">
+        <i class="material-icons left">+</i>
+      </button>
+    </div>
+  </span>
+  <!-- tiny_face_detector_controls -->
 
 </body>
 
@@ -279,6 +262,13 @@
       const dims = faceapi.matchDimensions(canvas, videoEl, true)
 
       const resizedResult = faceapi.resizeResults(result, dims)
+      console.log(resizedResult.expressions);
+      expression1.sad += Math.round(resizedResult.expressions.sad * 100);
+      expression1.happy += Math.round(resizedResult.expressions.happy * 100);
+      expression1.angry += Math.round(resizedResult.expressions.angry * 100);
+      var max = findMax(expression1);
+      if (max === 'happy') {
+        console.log('Sanjeewa');
       // console.log(resizedResult.expressions);
       expression1.sad += resizedResult.expressions.sad;
       expression1.happy += resizedResult.expressions.happy;
@@ -324,16 +314,16 @@
     setTimeout(onPlay, 500);
   }
 
-  function findMax(expressions){
+  function findMax(expressions) {
     let max;
-    if(expressions.sad > expressions.happy && expressions.sad > expressions.angry){
+    if (expressions.sad > expressions.happy && expressions.sad > expressions.angry) {
       max = 'sad';
     }
-    else if(expressions.happy > expressions.sad && expressions.happy > expressions.angry){
+    else if (expressions.happy > expressions.sad && expressions.happy > expressions.angry) {
       max = 'happy';
 
     }
-    else if(expressions.angry > expressions.happy && expressions.angry > expressions.sad){
+    else if (expressions.angry > expressions.happy && expressions.angry > expressions.sad) {
       max = 'angry';
 
     }
@@ -471,24 +461,24 @@
   };
 
   const playStop = () => {
-  let enabled = myVideoStream.getVideoTracks()[0].enabled;
-  if (enabled) {
-    myVideoStream.getVideoTracks()[0].enabled = false;
-     setPlayVideo();
-     console.log(myVideoStream);
-     myVideoStream.pause();
-     myVideoStream.src = "";
-    localstream.stop();
-  } else {
-    myVideoStream.getVideoTracks()[0].enabled = true;
-     setStopVideo();
-  }
-};
+    let enabled = myVideoStream.getVideoTracks()[0].enabled;
+    if (enabled) {
+      myVideoStream.getVideoTracks()[0].enabled = false;
+      setPlayVideo();
+      console.log(myVideoStream);
+      myVideoStream.pause();
+      myVideoStream.src = "";
+      localstream.stop();
+    } else {
+      myVideoStream.getVideoTracks()[0].enabled = true;
+      setStopVideo();
+    }
+  };
 </script>
 
 <script type="text/javascript">
   function showMessage() {
-      alert("Click OK to leave the meeting");
+    alert("Click OK to leave the meeting");
   }
 </script>
 

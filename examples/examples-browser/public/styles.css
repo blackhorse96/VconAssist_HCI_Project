@@ -153,6 +153,7 @@ body {
   top: 20px;
   left: 20px;
   display: none;
+  background-color: #000;
 }
 
 .center-content {
@@ -282,7 +283,8 @@ h3 {
 .leaveMeeting {
   background-color: red;
   color: #fff;
-  height: min-content;
+  height: 55px;
+  width: 120px;
   margin: auto;
 }
 .main__header {
@@ -317,4 +319,27 @@ h3 {
 }
 .unmute {
   color: red;
+}
+* {
+  box-sizing: border-box;
+}
+
+/* Create two equal columns that floats next to each other */
+.column {
+  float: left;
+  width: 200px;
+  padding: 5px;
+  height: 100px; /* Should be removed. Only for demonstration */
+  padding-left: 50px;
+  border-color: #fff;
+  column-gap: 40px;
+  margin:0 5px;
+  margin-top: 25px;
+}
+
+/* Clear floats after the columns */
+.row:after {
+  content: "";
+  display: table;
+  clear: both;
 }
