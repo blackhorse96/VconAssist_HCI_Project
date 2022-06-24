@@ -87,7 +87,7 @@ html {
     bottom: 97px;
     width: 343px;
     height: 50%;
-    display: block;
+    display: none;
 }
 
 .loading {
